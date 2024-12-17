@@ -25,36 +25,35 @@
       </section>
     </main>
     <script>
-      setTimeout(() => {
-        console.log("Hello, World!");
-      }, 1000);
+      // idで要素を取得
+      const targetNode = document.getElementById("dummy-list");
 
-      const append_list_text = () => {
-        // dummy-list IDを持つ要素を取得
-        const dummyElement = document.getElementById("dummy-list");
-        // 要素のテキスト内容を取得
-        const dummyText = dummyElement.textContent;
-        console.log("dummyText is:", dummyText);
-
-        // dummyTextをカンマで分割
-        const splitedText = dummyText.split(",");
-
-        // 分割したテキストを横並びに表示
-        console.log("index, splitedtext");
-        splitedText.forEach((text, index) => {
-          console.log("test", index, text);
-          // actual-list IDを持つ要素を取得
-          const actualElement = document.getElementById("actual-list");
-          // p要素を生成
-          const p = document.createElement("p");
-          // p要素にテキストを設定
-          p.textContent = `${index}: ${text}`;
-          // actual-listにp要素を追加
-          actualElement.appendChild(p);
-        });
+      // 変更を検知したときのコールバック関数
+      const callback = (mutationsList, observer) => {
+        for (const mutation of mutationsList) {
+          if (mutation.type === "attributes") {
+            console.log(`属性 ${mutation.attributeName} が変更されました`);
+          }
+          if (mutation.type === "childList") {
+            console.log("子要素の追加/削除がありました");
+          }
+          if (mutation.type === "characterData") {
+            console.log("テキスト内容が変更されました");
+          }
+        }
       };
 
-      append_list_text();
+      // MutationObserverの設定
+      const observerConfig = {
+        attributes: true, // 属性変更の監視
+        childList: true, // 子要素の変更の監視
+        subtree: true, // 子孫要素も含めて監視
+        characterData: true, // テキストノードの変更も監視
+      };
+
+      // MutationObserverのインスタンスを生成し、対象の要素を監視
+      const observer = new MutationObserver(callback);
+      observer.observe(targetNode, observerConfig);
     </script>
     <footer>
       <p>&copy; 2023 Sample Page. All rights reserved.</p>

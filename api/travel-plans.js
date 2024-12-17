@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const GIST_URL =
-  "https://gist.githubusercontent.com/kotto5/c1c0490c653ede63937d6e4921d17c50/raw/4130eab892b0eb44addf1c22298f7ee14379ce92/travel_plans.json";
+  "https://gist.githubusercontent.com/kotto5/c1c0490c653ede63937d6e4921d17c50/raw/9eff828ff7b117701ac9abf18a51112ef5c11417/travel_plans.json";
 
 module.exports = async (req, res) => {
   const fullUrl = `https://localhost/${req.url}`;

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample HTML Page</title>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to My Sample Page</h1>
+    </header>
+    <main>
+      <section>
+        <h2>About</h2>
+        <p>This is a sample HTML page created for demonstration purposes.</p>
+      </section>
+      <section>
+        <h2>Contact</h2>
+        <p>
+          You can reach me at
+          <a href="mailto:example@example.com">example@example.com</a>.
+        </p>
+        <p id="dummy-list">hoge1,hoge2,hoge3</p>
+        <p id="actual-list"></p>
+      </section>
+    </main>
+    <script>
+      setTimeout(() => {
+        console.log("Hello, World!");
+      }, 1000);
+
+      const append_list_text = () => {
+        // dummy-list IDを持つ要素を取得
+        const dummyElement = document.getElementById("dummy-list");
+        // 要素のテキスト内容を取得
+        const dummyText = dummyElement.textContent;
+        console.log("dummyText is:", dummyText);
+
+        // dummyTextをカンマで分割
+        const splitedText = dummyText.split(",");
+
+        // 分割したテキストを横並びに表示
+        console.log("index, splitedtext");
+        splitedText.forEach((text, index) => {
+          console.log("test", index, text);
+          // actual-list IDを持つ要素を取得
+          const actualElement = document.getElementById("actual-list");
+          // p要素を生成
+          const p = document.createElement("p");
+          // p要素にテキストを設定
+          p.textContent = `${index}: ${text}`;
+          // actual-listにp要素を追加
+          actualElement.appendChild(p);
+        });
+      };
+
+      append_list_text();
+    </script>
+    <footer>
+      <p>&copy; 2023 Sample Page. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

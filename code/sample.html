@@ -1,29 +1,28 @@
-<iframe
-  style="width: 100%; height: 100vh; border: none"
-  srcdoc="
-        <!DOCTYPE html>
-        <html lang='en'>
-          <head>
-            <style>
-              body {
-                margin: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100%;
-              }
-              img {
-                height: 100vh;
-                width: auto;
-              }
-            </style>
-          </head>
-          <body>
-            <img
-              src='https://images.unsplash.com/photo-1484557985045-edf25e08da73?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjYzNDZ9'
-              alt='Sample Image'
-            />
-          </body>
-        </html>
-      "
-></iframe>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%; /* 親要素（iframe全体）の高さを継承 */
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      img {
+        height: 100%;
+        width: auto;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <img
+      src="https://images.unsplash.com/photo-1484557985045-edf25e08da73?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjYzNDZ9"
+      alt="Sample Image"
+    />
+  </body>
+</html>

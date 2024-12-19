@@ -31,6 +31,6 @@ module.exports = async (req, res) => {
 
     res.status(200).json(filteredData);
   } catch (error) {
-    res.status(500).json({ error: "Error fetching data" });
+    res.status(500).json({ error: "Internal server error", message: error });
   }
 };

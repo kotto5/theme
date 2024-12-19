@@ -1,62 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sample HTML Page</title>
-  </head>
-  <body>
-    <header>
-      <h1>Welcome to My Sample Page</h1>
-    </header>
-    <main>
-      <section>
-        <h2>About</h2>
-        <p>This is a sample HTML page created for demonstration purposes.</p>
-      </section>
-      <section>
-        <h2>Contact</h2>
-        <p>
-          You can reach me at
-          <a href="mailto:example@example.com">example@example.com</a>.
-        </p>
-        <p id="dummy-list">hoge1,hoge2,hoge3</p>
-        <p id="actual-list"></p>
-      </section>
-    </main>
-    <script>
-      // idで要素を取得
-      const targetNode = document.getElementById("dummy-list");
-
-      // 変更を検知したときのコールバック関数
-      const callback = (mutationsList, observer) => {
-        for (const mutation of mutationsList) {
-          if (mutation.type === "attributes") {
-            console.log(`属性 ${mutation.attributeName} が変更されました`);
-          }
-          if (mutation.type === "childList") {
-            console.log("子要素の追加/削除がありました");
-          }
-          if (mutation.type === "characterData") {
-            console.log("テキスト内容が変更されました");
-          }
-        }
-      };
-
-      // MutationObserverの設定
-      const observerConfig = {
-        attributes: true, // 属性変更の監視
-        childList: true, // 子要素の変更の監視
-        subtree: true, // 子孫要素も含めて監視
-        characterData: true, // テキストノードの変更も監視
-      };
-
-      // MutationObserverのインスタンスを生成し、対象の要素を監視
-      const observer = new MutationObserver(callback);
-      observer.observe(targetNode, observerConfig);
-    </script>
-    <footer>
-      <p>&copy; 2023 Sample Page. All rights reserved.</p>
-    </footer>
-  </body>
-</html>
+<iframe
+  style="width: 100%; height: 100vh; border: none"
+  srcdoc="
+        <!DOCTYPE html>
+        <html lang='en'>
+          <head>
+            <style>
+              body {
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+              }
+              img {
+                height: 100vh;
+                width: auto;
+              }
+            </style>
+          </head>
+          <body>
+            <img
+              src='https://images.unsplash.com/photo-1484557985045-edf25e08da73?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjYzNDZ9'
+              alt='Sample Image'
+            />
+          </body>
+        </html>
+      "
+></iframe>

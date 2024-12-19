@@ -12,17 +12,61 @@
         align-items: center;
         justify-content: center;
       }
-      img {
-        height: 100%;
-        width: auto;
-      }
     </style>
   </head>
   <body>
-    
-    <img
-      src="https://images.unsplash.com/photo-1484557985045-edf25e08da73?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjYzNDZ9"
-      alt="Sample Image"
-    />
+    <style>
+      .slideshow {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .slideshow > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+      .slideshow .active {
+        display: block;
+      }
+      .colored-frame {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent; /* 背景色を枠線として使用 */
+        padding: 5%; /* 枠線のサイズを調整 */
+        box-sizing: border-box; /* パディングを含めたサイズ計算 */
+      }
+      .colored-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+    <div class="slideshow">
+      <div class="colored-frame active" style="background-color: #00ff00">
+        <img
+          src="https://images.unsplash.com/photo-1484557985045-edf25e08da73?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjYzNDZ9"
+        />
+      </div>
+      <div class="colored-frame" style="background-color: #ff0000">
+        <img
+          src="https://storage.googleapis.com/studio-cms-assets/projects/JpOLmP4xqQ/s-2400x1600_v-frms_webp_802e5bd4-5907-4c04-a16e-d7ca193baf6a.webp"
+        />
+      </div>
+    </div>
+    <script>
+      const frames = document.querySelectorAll(".slideshow .colored-frame");
+      let index = 0;
+
+      setInterval(() => {
+        frames[index].classList.remove("active");
+        index = (index + 1) % frames.length;
+        frames[index].classList.add("active");
+      }, 3000); // 3秒ごとに切り替え
+    </script>
   </body>
 </html>

@@ -30,10 +30,9 @@
         display: none;
       }
       .slideshow .active {
-        display: block;
+        display: flex;
       }
       .colored-frame {
-        display: flex;
         align-items: center;
         justify-content: center;
         background-color: transparent; /* 背景色を枠線として使用 */
@@ -59,14 +58,14 @@
       </div>
     </div>
     <script>
-      const frames = document.querySelectorAll(".slideshow .colored-frame");
+      const images = document.querySelectorAll(".slideshow div");
       let index = 0;
 
       setInterval(() => {
-        frames[index].classList.remove("active");
-        index = (index + 1) % frames.length;
-        frames[index].classList.add("active");
-      }, 500); // 3秒ごとに切り替え
+        images[index].classList.remove("active");
+        index = (index + 1) % images.length;
+        images[index].classList.add("active");
+      }, 3000); // 3秒ごとに切り替え
     </script>
   </body>
 </html>

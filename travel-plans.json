@@ -1,10 +1,22 @@
 {
   "travel_plans": {
     "plan_1": {
-      "title": "京都観光プラン",
+      "related_parties": [
+        {
+          "name": "小澤酒造株式会社",
+          "url": "https://example.com",
+          "separator": "×"
+        },
+        {
+          "name": "TOKYOWASABI",
+          "url": "https://example.com",
+          "separator": "×"
+        },
+        { "name": "SORANOHOTEL", "url": "https://example.com", "separator": "" }
+      ],
       "trip_plans": [
-        { "index": "①", "content": "AM 3:00 に高尾山山頂にて集合。のち解散" },
-        { "index": "②", "content": "AM 4:00 に富士山山頂にて集合" }
+        { "index": "①", "content": "AM 3:00 高尾山駅口にて集合。" },
+        { "index": "②", "content": "AM 7:00 山頂到着" }
       ],
       "price": [
         { "kind": "大人", "content": "¥20,000" },
@@ -13,7 +25,7 @@
         { "kind": "小人（中学生以下）", "content": "¥100,000" }
       ],
       "Q&A": [
-        { "Q": "集合場所はどこですか？", "A": "高尾山山頂です" },
+        { "Q": "集合場所はどこですか？", "A": "高尾山口駅です" },
         { "Q": "解散場所はどこですか？", "A": "高尾山山頂です" },
         { "Q": "持ち物は何が必要ですか？", "A": "登山靴、水分、食料" },
         { "Q": "持ち物は何が不必要ですか？", "A": "登山靴、水分、食料" },
@@ -27,7 +39,7 @@
           "provider": "株式会社サンプル"
         },
         {
-          "url": "https://images.unsplash.com/photo-1586442455295-ed…fHx8fDE3MzQwNjQ1MzZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
+          "url": "https://images.unsplash.com/photo-1586442455295-ed68bc07fec0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MTB8fFNwaXJpdHVhbGl0eXxlbnwwfHx8fDE3MzQwNjQ1MzZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
           "caption": "本プラン22では、1泊2日で多摩の自然な美味しいを楽しんでいただけるプランになっています。小澤酒造では日本酒の飲み比べやTOKYOWASABIさんでのわさび狩りなど、身軽でありながら豊かな時間を過ごすことができます。本プランでは、1泊2日で多摩の自然な美味しいを楽しんでいただけるプランになっています。小澤酒造では日本酒の飲み比べやTOKYOWASABIさんでのわさび狩りなど、身軽でありながら豊かな時間を過ごすことができます。",
           "photographer": "坂上太郎2",
           "provider": "株式会社サンプル2"
@@ -35,12 +47,48 @@
       ]
     },
     "plan_2": {
-      "title": "沖縄旅行プラン",
-      "trip_plans": [
-        { "index": "①", "content": "AM 3:00 に旭川市山頂にて集合。のち解散" },
+      "related_parties": [
         {
-          "index": "②",
-          "content": "AM 4:00 に九州地方の一番標高が高い所にて集合 "
+          "name": "サンプル",
+          "url": "https://example.com",
+          "separator": "×"
+        },
+        {
+          "name": "サンプル",
+          "url": "https://example.com",
+          "separator": "×"
+        },
+        { "name": "SORANOHOTEL", "url": "https://example.com", "separator": "" }
+      ],
+      "trip_plans": [
+        { "index": "①", "content": "AM 3:00 東京駅にて集合。" },
+        { "index": "②", "content": "AM 7:00 山頂到着" }
+      ],
+      "price": [
+        { "kind": "大人", "content": "¥20,000" },
+        { "kind": "大人", "content": "¥1,000,000" },
+        { "kind": "小人（中学生以下）", "content": "¥10,000" },
+        { "kind": "小人（中学生以下）", "content": "¥100,000" }
+      ],
+      "Q&A": [
+        { "Q": "集合場所はどこですか？", "A": "高尾山口駅です" },
+        { "Q": "解散場所はどこですか？", "A": "高尾山山頂です" },
+        { "Q": "持ち物は何が必要ですか？", "A": "登山靴、水分、食料" },
+        { "Q": "持ち物は何が不必要ですか？", "A": "登山靴、水分、食料" },
+        { "Q": "天候が悪い場合はどうなりますか？", "A": "中止となります" }
+      ],
+      "photos": [
+        {
+          "url": "https://images.unsplash.com/photo-1528443901122-581bb8c65efd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8Mnx8U3Bpcml0dWFsaXR5fGVufDB8fHx8MTczNDA2NDUzNnww&ixlib=rb-4.0.3&q=80&w=1080",
+          "caption": "本プランでは、1泊2日で多摩の自然な美味しいを楽しんでいただけるプランになっています。小澤酒造では日本酒の飲み比べやTOKYOWASABIさんでのわさび狩りなど、身軽でありながら豊かな時間を過ごすことができます。本プランでは、1泊2日で多摩の自然な美味しいを楽しんでいただけるプランになっています。小澤酒造では日本酒の飲み比べやTOKYOWASABIさんでのわさび狩りなど、身軽でありながら豊かな時間を過ごすことができます。",
+          "photographer": "坂上太郎",
+          "provider": "株式会社サンプル"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1586442455295-ed68bc07fec0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MzQ2fDB8MXxzZWFyY2h8MTB8fFNwaXJpdHVhbGl0eXxlbnwwfHx8fDE3MzQwNjQ1MzZ8MA&ixlib=rb-4.0.3&q=80&w=1080",
+          "caption": "本プラン22では、1泊2日で多摩の自然な美味しいを楽しんでいただけるプランになっています。小澤酒造では日本酒の飲み比べやTOKYOWASABIさんでのわさび狩りなど、身軽でありながら豊かな時間を過ごすことができます。本プランでは、1泊2日で多摩の自然な美味しいを楽しんでいただけるプランになっています。小澤酒造では日本酒の飲み比べやTOKYOWASABIさんでのわさび狩りなど、身軽でありながら豊かな時間を過ごすことができます。",
+          "photographer": "坂上太郎2",
+          "provider": "株式会社サンプル2"
         }
       ]
     }

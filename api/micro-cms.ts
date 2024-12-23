@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     const data = response.data;
     const plans: any[] = data.planList;
 
-    const plan = plans.filter((p) => p.studioSlug === slug);
+    const plan = plans.find((p) => p.studioSlug === slug);
     if (!plan) {
       return res.status(404).json({ error: "Data not found" });
     } else {

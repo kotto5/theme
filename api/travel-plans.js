@@ -7,13 +7,15 @@ module.exports = async (req, res) => {
   const { searchParams } = new URL(fullUrl);
   const path = searchParams.get("dest");
   console.log("url is ", path);
+
   const percentDecoded = decodeURIComponent(path);
   const after_last_slash = percentDecoded.substring(
     percentDecoded.lastIndexOf("/") + 1
   );
+
   const dest = after_last_slash;
 
-  console.log("dest", path);
+  console.log("dest", dest);
 
   try {
     const response = await axios.get(GIST_URL);

@@ -8,13 +8,7 @@ module.exports = async (req, res) => {
   console.log("fullUrl", fullUrl);
 
   const { searchParams } = new URL(fullUrl);
-  const requestedByUrl = searchParams.get("requestedByUrl");
-  console.log("requestedByUrl is [", requestedByUrl, "]");
-  const percentDecoded = decodeURIComponent(
-    requestedByUrl ? requestedByUrl : ""
-  );
-  const slug = percentDecoded.substring(percentDecoded.lastIndexOf("/") + 1);
-
+  const slug = searchParams.get("slug");
   console.log("slug: [", slug, "]");
 
   try {

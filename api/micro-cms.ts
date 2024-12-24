@@ -5,10 +5,15 @@ const MICRO_CMS_URL =
 
 module.exports = async (req, res) => {
   const fullUrl = `https://localhost/${req.url}`;
-  console.log("fullUrl", fullUrl);
-
   const { searchParams } = new URL(fullUrl);
-  const slug = searchParams.get("slug");
+  const path = searchParams.get("url");
+  console.log("url is ", path);
+
+  const percentDecoded = decodeURIComponent(path);
+  const slug = percentDecoded.substring(
+    percentDecoded.lastIndexOf("/") + 1
+  );
+
   console.log("slug: [", slug, "]");
 
   try {

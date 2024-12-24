@@ -2,18 +2,21 @@ const axios = require("axios");
 
 const MICRO_CMS_URL =
   "https://tsjgt37boc.microcms.io/api/v1/trip-plans/mj854awcuy";
+const TEST_SLUG = "test";
 
 module.exports = async (req, res) => {
   const fullUrl = `https://localhost/${req.url}`;
+  console.log("fullurl", fullUrl);
   const { searchParams } = new URL(fullUrl);
   const path = searchParams.get("url");
   console.log("url is ", path);
 
-  const percentDecoded = decodeURIComponent(path);
-  const slug = percentDecoded.substring(
-    percentDecoded.lastIndexOf("/") + 1
-  );
+  const parsePageSlug = (url) => {
+    const decoded = decodeURIComponent(url);
+    return decoded.substring(decoded.lastIndexOf("/") + 1);
+  };
 
+  const slug = parsePageSlug(path).includes("?") ? TEST_SLUG : parsePageSlug(path);
   console.log("slug: [", slug, "]");
 
   try {

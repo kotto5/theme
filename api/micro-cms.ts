@@ -4,7 +4,7 @@ const MICRO_CMS_URL =
   "https://tsjgt37boc.microcms.io/api/v1/trip-plans/mj854awcuy";
 
 module.exports = async (req, res) => {
-  const fullUrl = `https://localhost${req.url}`;
+  const fullUrl = `https://localhost/${req.url}`;
   console.log("fullUrl", fullUrl);
 
   const { searchParams } = new URL(fullUrl);

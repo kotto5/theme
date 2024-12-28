@@ -178,12 +178,27 @@
           updateCarousel();
         };
 
+        const autoScroll = () => {
+          if (currentSlideIndex >= allSlides.length - 1) {
+            currentSlideIndex = 1; // 先頭に戻る
+            track.style.transition = "none"; // トランジションを無効にする
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+          } else {
+            moveToSlide(currentSlideIndex + 1);
+          }
+        };
+
+        // 自動スクロールの設定（3秒ごとに次のスライドに移動）
+        const autoScrollInterval = setInterval(autoScroll, 8000);
+
         nextButton.addEventListener("click", () => {
+          clearInterval(autoScrollInterval); // ボタンがクリックされたら自動スクロールを停止
           if (currentSlideIndex >= allSlides.length - 1) return;
           moveToSlide(currentSlideIndex + 1);
         });
 
         prevButton.addEventListener("click", () => {
+          clearInterval(autoScrollInterval); // ボタンがクリックされたら自動スクロールを停止
           if (currentSlideIndex <= 0) return;
           moveToSlide(currentSlideIndex - 1);
         });
@@ -202,10 +217,11 @@
 
         indicators.forEach((indicator, index) => {
           indicator.addEventListener("click", () => {
+            clearInterval(autoScrollInterval); // インジケーターがクリックされたら自動スクロールを停止
             moveToSlide(index + 1);
           });
         });
-      }, 500);
+      });
     </script>
   </body>
 </html>

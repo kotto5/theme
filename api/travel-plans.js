@@ -6,8 +6,7 @@ module.exports = async (req, res) => {
   const fullUrl = `https://localhost/${req.url}`;
   const { searchParams } = new URL(fullUrl);
   const path = searchParams.get("dest");
-  console.log("url is ", path);
-
+console.log("url is ", path);k
   const percentDecoded = decodeURIComponent(path);
   const after_last_slash = percentDecoded.substring(
     percentDecoded.lastIndexOf("/") + 1

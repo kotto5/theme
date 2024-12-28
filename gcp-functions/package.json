@@ -1,0 +1,19 @@
+{
+  "name": "function-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "deploy": "gcloud functions deploy hello-node-function --gen2 --runtime=nodejs20  --region=asia-northeast1   --source=.  --entry-point=helloGET  --trigger-http  --allow-unauthenticated --project tama-web-dev",
+    "pre-build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.4.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

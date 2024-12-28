@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinite Image Carousel</title>
+    <style>
+      /* カルーセル全体のスタイル */
+      .carousel {
+        position: relative;
+        width: 100%;
+        max-width: 800px; /* カルーセルの最大幅 */
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      /* スライドのコンテナ */
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      /* 各スライド */
+      .carousel-slide {
+        min-width: 100%;
+        height: 500px; /* スライドの高さ */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 画像のスタイル */
+      .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* 左右ナビゲーションボタン */
+      .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .carousel-button--left {
+        left: 10px;
+      }
+
+      .carousel-button--right {
+        right: 10px;
+      }
+
+      /* インジケーター */
+      .carousel-indicators {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+      }
+
+      .carousel-indicator {
+        width: 10px;
+        height: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .carousel-indicator.active {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel">
+      <div class="carousel-track">
+        <div class="carousel-slide">
+          <img
+            src="https://user0514.cdnw.net/shared/img/thumb/tomcatDSC09085_TP_V.jpg"
+            alt="Image 1"
+          />
+        </div>
+        <div class="carousel-slide">
+          <img
+            src="https://thumb.photo-ac.com/87/873fcf7a67981f3a076805df09bb75ef_t.jpeg"
+            alt="Image 2"
+          />
+        </div>
+        <div class="carousel-slide">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN5IVeAA1kGQV3txoJu7rWFLX9IMGQKgHd5Q&s"
+            alt="Image 3"
+          />
+        </div>
+      </div>
+      <button class="carousel-button carousel-button--left">&lt;</button>
+      <button class="carousel-button carousel-button--right">&gt;</button>
+      <div class="carousel-indicators">
+        <div class="carousel-indicator active"></div>
+        <div class="carousel-indicator"></div>
+        <div class="carousel-indicator"></div>
+      </div>
+    </div>
+
+    <script>
+      const track = document.querySelector(".carousel-track");
+      const slides = Array.from(track.children);
+      const nextButton = document.querySelector(".carousel-button--right");
+      const prevButton = document.querySelector(".carousel-button--left");
+      const indicators = document.querySelectorAll(".carousel-indicator");
+
+      // 無限スクロールのために先頭と末尾のクローンを作成
+      const firstClone = slides[0].cloneNode(true);
+      const lastClone = slides[slides.length - 1].cloneNode(true);
+
+      track.appendChild(firstClone);
+      track.insertBefore(lastClone, slides[0]);
+
+      const allSlides = Array.from(track.children);
+      let currentSlideIndex = 1;
+
+      // 初期位置を調整
+      track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+
+      const updateCarousel = () => {
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle(
+            "active",
+            index === (currentSlideIndex - 1 + slides.length) % slides.length ); });
+      };
+
+      const moveToSlide = (index) => {
+        track.style.transition = "transform 0.5s ease-in-out";
+        track.style.transform = `translateX(-${index * 100}%)`;
+        currentSlideIndex = index;
+        updateCarousel();
+      };
+
+      nextButton.addEventListener("click", () => {
+        if (currentSlideIndex >= allSlides.length - 1) return;
+        moveToSlide(currentSlideIndex + 1);
+      });
+
+      prevButton.addEventListener("click", () => {
+        if (currentSlideIndex <= 0) return;
+        moveToSlide(currentSlideIndex - 1);
+      });
+
+      track.addEventListener("transitionend", () => {
+        if (currentSlideIndex === allSlides.length - 1) {
+          track.style.transition = "none";
+          currentSlideIndex = 1;
+          track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+        } else if (currentSlideIndex === 0) {
+          track.style.transition = "none";
+          currentSlideIndex = allSlides.length - 2;
+          track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+        }
+      });
+
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", () => {
+          moveToSlide(index + 1);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -4,7 +4,10 @@ const MICRO_CMS_URL =
   "https://tsjgt37boc.microcms.io/api/v1/trip-plans/mj854awcuy";
 const TEST_SLUG = "test";
 
-module.exports = async (req, res) => {
+// src/index.ts
+const functions = require("@google-cloud/functions-framework");
+
+functions.http("helloGET", async (req: any, res: any) => {
   const fullUrl = `https://localhost/${req.url}`;
   console.log("fullurl", fullUrl);
   const { searchParams } = new URL(fullUrl);
@@ -39,4 +42,4 @@ module.exports = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Internal server error", message: error });
   }
-};
+});

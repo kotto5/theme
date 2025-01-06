@@ -22,7 +22,7 @@
       /* スライドのコンテナ */
       .carousel-track {
         display: flex;
-        transition: transform 0.5s ease-in-out;
+        transition: none;
       }
 
       /* 各スライド */
@@ -149,86 +149,46 @@
         const prevButton = document.querySelector(".carousel-button--left");
         const indicators = document.querySelectorAll(".carousel-indicator");
 
-        // 先頭と末尾のクローンを作成
-        const firstClone = slides[0].cloneNode(true);
-        const lastClone = slides[slides.length - 1].cloneNode(true);
-
-        track.appendChild(firstClone);
-        track.insertBefore(lastClone, slides[0]);
-
-        const allSlides = Array.from(track.children);
-
-        // ★ 初期状態: transition = "none" で瞬間的に -100% へ
-        track.style.transition = "none";
-        let currentSlideIndex = 1;
-        track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-
-        // ★ 描画後に transition を再度ONにする
-        setTimeout(() => {
-          track.style.transition = "transform 0.5s ease-in-out";
-        }, 300);
+        let currentSlideIndex = 0;
 
         // --- 以下はそのままでも OK ---
         const updateCarousel = () => {
           indicators.forEach((indicator, index) => {
             indicator.classList.toggle(
               "active",
-              index === (currentSlideIndex - 1 + slides.length) % slides.length
+              index === currentSlideIndex % slides.length
             );
           });
         };
 
         const moveToSlide = (index) => {
-          track.style.transition = "transform 0.5s ease-in-out";
           track.style.transform = `translateX(-${index * 100}%)`;
           currentSlideIndex = index;
           updateCarousel();
         };
 
-        const autoScroll = () => {
-          if (currentSlideIndex >= allSlides.length - 1) {
-            currentSlideIndex = 1; // 先頭に戻る
-            track.style.transition = "none"; // トランジションを無効にする
-            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+        nextButton.addEventListener("click", () => {
+          if (currentSlideIndex >= slides.length - 1) {
+            moveToSlide(0);
           } else {
             moveToSlide(currentSlideIndex + 1);
           }
-        };
-
-        // 自動スクロールの設定
-        const autoScrollInterval = setInterval(autoScroll, 8000);
-
-        nextButton.addEventListener("click", () => {
-          clearInterval(autoScrollInterval);
-          if (currentSlideIndex >= allSlides.length - 1) return;
-          moveToSlide(currentSlideIndex + 1);
         });
 
         prevButton.addEventListener("click", () => {
-          clearInterval(autoScrollInterval);
-          if (currentSlideIndex <= 0) return;
-          moveToSlide(currentSlideIndex - 1);
-        });
-
-        track.addEventListener("transitionend", () => {
-          if (currentSlideIndex === allSlides.length - 1) {
-            track.style.transition = "none";
-            currentSlideIndex = 1;
-            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-          } else if (currentSlideIndex === 0) {
-            track.style.transition = "none";
-            currentSlideIndex = allSlides.length - 2;
-            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+          if (currentSlideIndex <= 0) {
+            moveToSlide(slides.length - 1);
+          } else {
+            moveToSlide(currentSlideIndex - 1);
           }
         });
 
         indicators.forEach((indicator, index) => {
           indicator.addEventListener("click", () => {
-            clearInterval(autoScrollInterval);
-            moveToSlide(index + 1);
+            moveToSlide(index);
           });
         });
-      }, 0);
+      }, 500);
     </script>
   </body>
 </html>

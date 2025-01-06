@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "deploy": "gcloud functions deploy hello-node-function --gen2 --runtime=nodejs20  --region=asia-northeast1   --source=.  --entry-point=helloGET  --trigger-http  --allow-unauthenticated --project tama-web-dev  --env-vars-file .env.yaml ",
+    "deploy": "gcloud functions deploy microcms-api --gen2 --runtime=nodejs20  --region=asia-northeast1   --source=.  --entry-point=helloGET  --trigger-http  --allow-unauthenticated --project tama-web-dev  --env-vars-file .env.yaml ",
     "pre-build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const MICRO_CMS_URL =
-  "https://tsjgt37boc.microcms.io/api/v1/trip-plans/product";
+  "https://tsjgt37boc.microcms.io/api/v1/trip-plans";
 const TEST_SLUG = "test";
 
 // src/index.ts
@@ -169,10 +169,9 @@ functions.http("helloGET", async (req: any, res: any) => {
         "X-MICROCMS-API-KEY": process.env.X_MICROCMS_API_KEY,
       },
     });
-    const data = response.data;
-    const plans: any[] = data.planList;
+    const contents = response.data.contents;
 
-    const plan = plans.find((p) => p.studioSlug === slug);
+    const plan = contents.find((p) => p.studioSlug === slug);
     if (!plan) {
       return res.status(200).json(TEST_DATA);
     } else {

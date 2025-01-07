@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const axios = require("axios");
-const MICRO_CMS_URL = "https://tsjgt37boc.microcms.io/api/v1/trip-plans/product";
+const MICRO_CMS_URL = "https://tsjgt37boc.microcms.io/api/v1/trip-plans";
 const TEST_SLUG = "test";
 // src/index.ts
 const functions = require("@google-cloud/functions-framework");
@@ -163,9 +163,9 @@ functions.http("helloGET", (req, res) => __awaiter(this, void 0, void 0, functio
                 "X-MICROCMS-API-KEY": process.env.X_MICROCMS_API_KEY,
             },
         });
-        const data = response.data;
-        const plans = data.planList;
-        const plan = plans.find((p) => p.studioSlug === slug);
+        console.log("response", response);
+        const contents = response.data.contents;
+        const plan = contents.find((p) => p.studioSlug === slug);
         if (!plan) {
             return res.status(200).json(TEST_DATA);
         }

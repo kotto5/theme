@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const MICRO_CMS_URL =
-  "https://tsjgt37boc.microcms.io/api/v1/trip-plans/mj854awcuy";
+  "https://tsjgt37boc.microcms.io/api/v1/trip-plans/product";
 const TEST_SLUG = "test";
 
 // src/index.ts

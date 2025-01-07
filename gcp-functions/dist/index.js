@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const axios = require("axios");
-const MICRO_CMS_URL = "https://tsjgt37boc.microcms.io/api/v1/trip-plans/mj854awcuy";
+const MICRO_CMS_URL = "https://tsjgt37boc.microcms.io/api/v1/trip-plans/product";
 const TEST_SLUG = "test";
 // src/index.ts
 const functions = require("@google-cloud/functions-framework");

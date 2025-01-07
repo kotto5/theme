@@ -13,31 +13,13 @@ const TEST_SLUG = "test";
 // src/index.ts
 const functions = require("@google-cloud/functions-framework");
 const TEST_DATA = {
-    fieldId: "plans",
-    studioSlug: "test",
-    placeList: [
-        {
-            fieldId: "price",
-            kind: "子供",
-            value: "5,000円",
-        },
-        {
-            fieldId: "price",
-            kind: "大人",
-            value: "10,000円",
-        },
-        {
-            fieldId: "price",
-            kind: "テストテストテストテストテストテスト",
-            value: "1,000,000円",
-        },
-        {
-            fieldId: "price",
-            kind: "テストテストテストテストテストテストテストテストテストテストテスト",
-            value: "10,000,000円",
-        },
-    ],
-    relatedList: [
+    id: "r36ydy9l77",
+    createdAt: "2025-01-07T06:10:58.244Z",
+    updatedAt: "2025-01-07T06:11:11.989Z",
+    publishedAt: "2025-01-07T06:10:58.244Z",
+    revisedAt: "2025-01-07T06:11:11.989Z",
+    studioSlug: "famtrip",
+    relates: [
         {
             fieldId: "related",
             name: "Horai",
@@ -57,34 +39,7 @@ const TEST_DATA = {
             separator: [],
         },
     ],
-    questionAnswerList: [
-        {
-            fieldId: "questionAndAnswer",
-            question: "解散場所はどこですか？",
-            answer: "高尾山山頂です",
-        },
-        {
-            fieldId: "questionAndAnswer",
-            question: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
-            answer: "テストテストテストテストテストテストテストテストテストテスト",
-        },
-        {
-            fieldId: "questionAndAnswer",
-            question: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
-            answer: "テストテストテストテストテストテストテストテストテストテスト",
-        },
-        {
-            fieldId: "questionAndAnswer",
-            question: "テスト？",
-            answer: "テスト",
-        },
-        {
-            fieldId: "questionAndAnswer",
-            question: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
-            answer: "テストテストテストテストテストテストテストテストテストテスト",
-        },
-    ],
-    descriptionList: [
+    planDescriptions: [
         {
             fieldId: "planDescription",
             imageUrl: {
@@ -108,31 +63,63 @@ const TEST_DATA = {
             provider: "株式会社サンプル2",
         },
     ],
-    itinerary: [
+    spots: [
         {
             fieldId: "spot",
             index: "①",
-            content: "am 3:00 高尾山駅口集合",
+            content: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
         },
         {
             fieldId: "spot",
             index: "②",
-            content: "am 9:00 下山 テストテストテストテストテストテストテストテストテスト",
+            content: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
         },
         {
             fieldId: "spot",
             index: "③",
-            content: "am 6:00 登頂",
-        },
-        {
-            fieldId: "spot",
-            index: "④",
-            content: "食事　テストテストテストテストテストテストテストテストテストテストテストテストテスト",
-        },
-        {
-            fieldId: "spot",
-            index: "⑤",
             content: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
+        },
+    ],
+    price: [
+        { fieldId: "price", kind: "子供", value: "5,000円" },
+        { fieldId: "price", kind: "大人", value: "10,000円" },
+        {
+            fieldId: "price",
+            kind: "テストテストテストテストテストテスト",
+            value: "1,000,000円",
+        },
+        {
+            fieldId: "price",
+            kind: "テストテストテストテストテストテストテストテストテストテストテスト",
+            value: "10,000,000円",
+        },
+    ],
+    questionAndAnswers: [
+        {
+            fieldId: "questionAndAnswer",
+            question: "集合場所はどこですか？",
+            answer: "高尾山口駅です",
+        },
+        {
+            fieldId: "questionAndAnswer",
+            question: "解散場所はどこですか？",
+            answer: "高尾山山頂です",
+        },
+        {
+            fieldId: "questionAndAnswer",
+            question: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
+            answer: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
+        },
+        {
+            fieldId: "questionAndAnswer",
+            question: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
+            answer: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
+        },
+        { fieldId: "questionAndAnswer", question: "テスト？", answer: "テスト" },
+        {
+            fieldId: "questionAndAnswer",
+            question: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
+            answer: "テストですか？テストですか？テストですか？テストですか？テストですか？テストですか？",
         },
     ],
 };
@@ -163,7 +150,6 @@ functions.http("helloGET", (req, res) => __awaiter(this, void 0, void 0, functio
                 "X-MICROCMS-API-KEY": process.env.X_MICROCMS_API_KEY,
             },
         });
-        console.log("response", response);
         const contents = response.data.contents;
         const plan = contents.find((p) => p.studioSlug === slug);
         if (!plan) {

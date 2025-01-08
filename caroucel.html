@@ -11,6 +11,10 @@
       /* カルーセル全体のスタイル */
       .carousel {
         position: relative;
+        touch-action: none;
+        -webkit-overflow-scrolling: touch; /* スマホ対応のため必須 */
+        overflow-scrolling: touch; /* スマホ対応のため必須 */
+        scroll-snap-type: x mandatory;
         width: 100%;
         margin: 0 auto;
       }
@@ -188,6 +192,47 @@
             moveToSlide(index);
           });
         });
+
+        const carousel = document.querySelector(".carousel"); // 例: 全体ラッパ要素
+
+        let startX = 0;
+        let isSwiping = false;
+        const SWIPE_THRESHOLD = 50; // どのくらい動かしたら “スワイプ” とみなすか(px)
+
+        carousel.addEventListener("pointerdown", (e) => {
+          // タッチ開始
+          isSwiping = true;
+          startX = e.clientX;
+          alert("pointerdown");
+        });
+
+        carousel.addEventListener("pointermove", (e) => {
+          // ドラッグ中
+          if (!isSwiping) return;
+          // 必要に応じて、ドラッグ中にトラックを動かす実装もできる (いわゆるスワイプ追従)
+          // ここでは「指を離した時にだけ判定」するので特に何も書かない
+        });
+
+        carousel.addEventListener("pointerup", (e) => {
+          // 指を離した (スワイプ終了)
+          if (!isSwiping) return;
+          isSwiping = false;
+
+          const diffX = e.clientX - startX;
+          if (Math.abs(diffX) > SWIPE_THRESHOLD) {
+            if (diffX > 0) {
+              // 指を右方向に動かした (右スワイプ) => 前のスライド
+              prevButton.click();
+            } else {
+              // 指を左方向に動かした (左スワイプ) => 次のスライド
+              nextButton.click();
+            }
+          } else {
+            // スワイプとみなさない程度の微小移動 → 何もしない/ 元に戻す 等
+          }
+        });
+
+        // pointercancel などのイベントでも “スワイプ中断” する処理を入れてもよい
       }, 500);
     </script>
   </body>

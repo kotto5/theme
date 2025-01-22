@@ -22,19 +22,19 @@ const TEST_DATA = {
     relates: [
         {
             fieldId: "related",
-            name: "Horai",
+            name: "test",
             url: "https://example.com",
             separator: ["×"],
         },
         {
             fieldId: "related",
-            name: "SORANO HOTEL",
+            name: "test",
             url: "https://example.com",
             separator: ["×"],
         },
         {
             fieldId: "related",
-            name: "多摩イノベーションエコシステム",
+            name: "test",
             url: "https://example.com",
             separator: [],
         },
@@ -47,9 +47,9 @@ const TEST_DATA = {
                 height: 810,
                 width: 1080,
             },
-            caption: "本プランでは、1泊2日で多摩の自然な美味しいを楽しんでいただけるプランになっています。小澤酒造では日本酒の飲み比べやTOKYOWASABIさんでのわさび狩りなど、身軽でありながら豊かな時間を過ごすことができます。本プランでは、1泊2日で多摩の自然な美味しいを楽しんでいただけるプランになっています。小澤酒造では日本酒の飲み比べやTOKYOWASABIさんでのわさび狩りなど、身軽でありながら豊かな時間を過ごすことができます。",
-            photographer: " 坂上太郎",
-            provider: "株式会社サンプル1",
+            caption: "テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト",
+            photographer: " 坂上太郎1",
+            provider: "株式会社テスト1",
         },
         {
             fieldId: "planDescription",
@@ -58,9 +58,9 @@ const TEST_DATA = {
                 height: 720,
                 width: 1080,
             },
-            caption: "本プラン2説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明説明",
+            caption: "テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト",
             photographer: "坂上太郎2",
-            provider: "株式会社サンプル2",
+            provider: "株式会社テスト2",
         },
     ],
     spots: [

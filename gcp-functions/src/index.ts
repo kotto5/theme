@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const MICRO_CMS_URL = "https://tsjgt37boc.microcms.io/api/v1/trip-plans";
-const TEST_SLUG = "test";
+const TEST_SLUG = "slug";
 
 // src/index.ts
 const functions = require("@google-cloud/functions-framework");
@@ -85,7 +85,7 @@ const TEST_DATA = {
     {
       fieldId: "price",
       kind: "テストテストテストテストテストテスト",
-      value: "1,000,000円",
+      value: "1g,000,000円",
     },
     {
       fieldId: "price",
@@ -141,14 +141,13 @@ functions.http("helloGET", async (req: any, res: any) => {
 
   const parsePageSlug = (url) => {
     const decoded = decodeURIComponent(url);
-    return decoded.substring(decoded.lastIndexOf("/") + 1);
+    const slug = decoded.substring(decoded.lastIndexOf("/") + 1);
+    return slug.split("#")[0]; // Remove fragment identifier if present
   };
 
-  var slug: any;
-  if (parsePageSlug(path).includes("?")) {
+  const slug = parsePageSlug(path);
+  if (!slug || slug === TEST_SLUG) {
     return res.status(200).json(TEST_DATA);
-  } else {
-    slug = parsePageSlug(path);
   }
   console.log("slug: [", slug, "]");
 
